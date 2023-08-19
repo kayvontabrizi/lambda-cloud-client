@@ -121,9 +121,6 @@ conf = lambda_cloud_client.Configuration(
         self.access_token = access_token
         """Access token
         """
-        self.access_token = None
-        """access token for OAuth/Bearer
-        """
         self.logger = {}
         """Logging Settings
         """
