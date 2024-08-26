@@ -19,22 +19,19 @@ import json
 
 
 from typing import Optional
-from pydantic import BaseModel, Field, StrictStr, constr
+from pydantic import StringConstraints, ConfigDict, BaseModel, Field, StrictStr
+from typing_extensions import Annotated
 
 class SshKey(BaseModel):
     """
     Information about a stored SSH key, which can be used to access instances over SSH
     """
     id: StrictStr = Field(..., description="Unique identifier (ID) of an SSH key")
-    name: constr(strict=True, max_length=64) = Field(..., description="Name of the SSH key")
-    public_key: constr(strict=True, max_length=4096) = Field(..., description="Public key for the SSH key")
+    name: Annotated[str, StringConstraints(strict=True, max_length=64)] = Field(..., description="Name of the SSH key")
+    public_key: Annotated[str, StringConstraints(strict=True, max_length=4096)] = Field(..., description="Public key for the SSH key")
     private_key: Optional[StrictStr] = Field(None, description="Private key for the SSH key. Only returned when generating a new key pair.")
     __properties = ["id", "name", "public_key", "private_key"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

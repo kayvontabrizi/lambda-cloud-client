@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictBool, StrictStr
+from pydantic import ConfigDict, BaseModel, Field, StrictBool, StrictStr
 from lambda_cloud_client.models.region import Region
 from lambda_cloud_client.models.user import User
 
@@ -35,11 +35,7 @@ class FileSystem(BaseModel):
     region: Region = Field(...)
     is_in_use: StrictBool = Field(..., description="Whether the file system is currently in use by an instance. File systems that are in use cannot be deleted.")
     __properties = ["id", "name", "created", "created_by", "mount_point", "region", "is_in_use"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

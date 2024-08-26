@@ -19,20 +19,17 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import ConfigDict, BaseModel, Field
 from lambda_cloud_client.models.instance import Instance
+from typing_extensions import Annotated
 
 class TerminateInstance200ResponseData(BaseModel):
     """
     TerminateInstance200ResponseData
     """
-    terminated_instances: conlist(Instance) = Field(..., description="List of instances that were terminated. Note: this list might not contain all instances requested to be terminated.")
+    terminated_instances: Annotated[List[Instance], Field()] = Field(..., description="List of instances that were terminated. Note: this list might not contain all instances requested to be terminated.")
     __properties = ["terminated_instances"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

@@ -16,7 +16,7 @@ import re  # noqa: F401
 import io
 import warnings
 
-from pydantic import validate_arguments, ValidationError
+from pydantic import validate_call, ValidationError
 from typing_extensions import Annotated
 
 from pydantic import Field, StrictStr
@@ -55,7 +55,7 @@ class DefaultApi(object):
             api_client = ApiClient.get_default()
         self.api_client = api_client
 
-    @validate_arguments
+    @validate_call
     def add_ssh_key(self, add_ssh_key_request : AddSSHKeyRequest, **kwargs) -> AddSSHKey200Response:  # noqa: E501
         """Add SSH key  # noqa: E501
 
@@ -84,7 +84,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the add_ssh_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.add_ssh_key_with_http_info(add_ssh_key_request, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def add_ssh_key_with_http_info(self, add_ssh_key_request : AddSSHKeyRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Add SSH key  # noqa: E501
 
@@ -204,7 +204,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def delete_ssh_key(self, id : Annotated[StrictStr, Field(..., description="The unique identifier (ID) of the SSH key")], **kwargs) -> None:  # noqa: E501
         """Delete SSH key  # noqa: E501
 
@@ -233,7 +233,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the delete_ssh_key_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.delete_ssh_key_with_http_info(id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def delete_ssh_key_with_http_info(self, id : Annotated[StrictStr, Field(..., description="The unique identifier (ID) of the SSH key")], **kwargs) -> ApiResponse:  # noqa: E501
         """Delete SSH key  # noqa: E501
 
@@ -341,7 +341,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def get_instance(self, id : Annotated[StrictStr, Field(..., description="The unique identifier (ID) of the instance")], **kwargs) -> GetInstance200Response:  # noqa: E501
         """List details of a specific instance  # noqa: E501
 
@@ -370,7 +370,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the get_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.get_instance_with_http_info(id, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def get_instance_with_http_info(self, id : Annotated[StrictStr, Field(..., description="The unique identifier (ID) of the instance")], **kwargs) -> ApiResponse:  # noqa: E501
         """List details of a specific instance  # noqa: E501
 
@@ -483,7 +483,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def instance_types(self, **kwargs) -> InstanceTypes200Response:  # noqa: E501
         """Retrieve list of offered instance types  # noqa: E501
 
@@ -510,7 +510,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the instance_types_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.instance_types_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def instance_types_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """Retrieve list of offered instance types  # noqa: E501
 
@@ -616,7 +616,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def launch_instance(self, launch_instance_request : LaunchInstanceRequest, **kwargs) -> LaunchInstance200Response:  # noqa: E501
         """Launch instances  # noqa: E501
 
@@ -645,7 +645,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the launch_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.launch_instance_with_http_info(launch_instance_request, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def launch_instance_with_http_info(self, launch_instance_request : LaunchInstanceRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Launch instances  # noqa: E501
 
@@ -767,7 +767,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_file_systems(self, **kwargs) -> ListFileSystems200Response:  # noqa: E501
         """List file systems  # noqa: E501
 
@@ -794,7 +794,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the list_file_systems_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_file_systems_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_file_systems_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """List file systems  # noqa: E501
 
@@ -900,7 +900,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_instances(self, **kwargs) -> ListInstances200Response:  # noqa: E501
         """List running instances  # noqa: E501
 
@@ -927,7 +927,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the list_instances_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_instances_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_instances_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """List running instances  # noqa: E501
 
@@ -1033,7 +1033,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def list_ssh_keys(self, **kwargs) -> ListSSHKeys200Response:  # noqa: E501
         """List SSH keys  # noqa: E501
 
@@ -1060,7 +1060,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the list_ssh_keys_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.list_ssh_keys_with_http_info(**kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def list_ssh_keys_with_http_info(self, **kwargs) -> ApiResponse:  # noqa: E501
         """List SSH keys  # noqa: E501
 
@@ -1166,7 +1166,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def restart_instance(self, restart_instance_request : RestartInstanceRequest, **kwargs) -> RestartInstance200Response:  # noqa: E501
         """Restart instances  # noqa: E501
 
@@ -1195,7 +1195,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the restart_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.restart_instance_with_http_info(restart_instance_request, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def restart_instance_with_http_info(self, restart_instance_request : RestartInstanceRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Restart instances  # noqa: E501
 
@@ -1317,7 +1317,7 @@ class DefaultApi(object):
             collection_formats=_collection_formats,
             _request_auth=_params.get('_request_auth'))
 
-    @validate_arguments
+    @validate_call
     def terminate_instance(self, terminate_instance_request : TerminateInstanceRequest, **kwargs) -> TerminateInstance200Response:  # noqa: E501
         """Terminate an instance  # noqa: E501
 
@@ -1346,7 +1346,7 @@ class DefaultApi(object):
             raise ValueError("Error! Please call the terminate_instance_with_http_info method with `_preload_content` instead and obtain raw data from ApiResponse.raw_data")
         return self.terminate_instance_with_http_info(terminate_instance_request, **kwargs)  # noqa: E501
 
-    @validate_arguments
+    @validate_call
     def terminate_instance_with_http_info(self, terminate_instance_request : TerminateInstanceRequest, **kwargs) -> ApiResponse:  # noqa: E501
         """Terminate an instance  # noqa: E501
 

@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictStr, validator
+from pydantic import field_validator, ConfigDict, BaseModel, Field, StrictStr
 
 class User(BaseModel):
     """
@@ -30,17 +30,14 @@ class User(BaseModel):
     status: StrictStr = Field(..., description="Status of the user's account")
     __properties = ["id", "email", "status"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('active', 'deactivated'):
             raise ValueError("must be one of enum values ('active', 'deactivated')")
         return value
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

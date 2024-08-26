@@ -19,19 +19,16 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, StrictStr, conlist
+from pydantic import ConfigDict, BaseModel, Field, StrictStr
+from typing_extensions import Annotated
 
 class TerminateInstanceRequest(BaseModel):
     """
     TerminateInstanceRequest
     """
-    instance_ids: conlist(StrictStr) = Field(..., description="The unique identifiers (IDs) of the instances to terminate")
+    instance_ids: Annotated[List[StrictStr], Field()] = Field(..., description="The unique identifiers (IDs) of the instances to terminate")
     __properties = ["instance_ids"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

@@ -19,7 +19,8 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conint, conlist, constr
+from pydantic import StringConstraints, ConfigDict, BaseModel, Field, StrictStr
+from typing_extensions import Annotated
 
 class LaunchInstanceRequest(BaseModel):
     """
@@ -27,16 +28,12 @@ class LaunchInstanceRequest(BaseModel):
     """
     region_name: StrictStr = Field(..., description="Short name of a region")
     instance_type_name: StrictStr = Field(..., description="Name of an instance type")
-    ssh_key_names: conlist(constr(strict=True, max_length=64), max_items=1, min_items=1) = Field(..., description="Names of the SSH keys to allow access to the instances. Currently, exactly one SSH key must be specified.")
-    file_system_names: Optional[conlist(StrictStr, max_items=1)] = Field(None, description="Names of the file systems to attach to the instances. Currently, only one (if any) file system may be specified.")
-    quantity: Optional[conint(strict=True, le=1, ge=1)] = Field(1, description="Number of instances to launch")
-    name: Optional[constr(strict=True, max_length=64, min_length=1)] = Field(None, description="User-provided name for the instance")
+    ssh_key_names: Annotated[List[Annotated[str, StringConstraints(strict=True, max_length=64)]], Field(max_length=1, min_length=1)] = Field(..., description="Names of the SSH keys to allow access to the instances. Currently, exactly one SSH key must be specified.")
+    file_system_names: Optional[Annotated[List[StrictStr], Field(max_length=1)]] = Field(None, description="Names of the file systems to attach to the instances. Currently, only one (if any) file system may be specified.")
+    quantity: Optional[Annotated[int, Field(strict=True, le=1, ge=1)]] = Field(1, description="Number of instances to launch")
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=64, min_length=1)]] = Field(None, description="User-provided name for the instance")
     __properties = ["region_name", "instance_type_name", "ssh_key_names", "file_system_names", "quantity", "name"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

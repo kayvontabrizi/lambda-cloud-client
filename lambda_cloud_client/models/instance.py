@@ -19,20 +19,21 @@ import json
 
 
 from typing import List, Optional
-from pydantic import BaseModel, Field, StrictStr, conlist, constr, validator
+from pydantic import field_validator, StringConstraints, ConfigDict, BaseModel, Field, StrictStr
 from lambda_cloud_client.models.instance_type import InstanceType
 from lambda_cloud_client.models.region import Region
+from typing_extensions import Annotated
 
 class Instance(BaseModel):
     """
     Virtual machine (VM) in Lambda Cloud
     """
     id: StrictStr = Field(..., description="Unique identifier (ID) of an instance")
-    name: Optional[constr(strict=True, max_length=64, min_length=1)] = Field(None, description="User-provided name for the instance")
+    name: Optional[Annotated[str, StringConstraints(strict=True, max_length=64, min_length=1)]] = Field(None, description="User-provided name for the instance")
     ip: Optional[StrictStr] = Field(None, description="IPv4 address of the instance")
     status: StrictStr = Field(..., description="The current status of the instance")
-    ssh_key_names: conlist(constr(strict=True, max_length=64)) = Field(..., description="Names of the SSH keys allowed to access the instance")
-    file_system_names: conlist(StrictStr) = Field(..., description="Names of the file systems, if any, attached to the instance")
+    ssh_key_names: Annotated[List[Annotated[str, StringConstraints(strict=True, max_length=64)]], Field()] = Field(..., description="Names of the SSH keys allowed to access the instance")
+    file_system_names: Annotated[List[StrictStr], Field()] = Field(..., description="Names of the file systems, if any, attached to the instance")
     region: Optional[Region] = None
     instance_type: Optional[InstanceType] = None
     hostname: Optional[StrictStr] = Field(None, description="Hostname assigned to this instance, which resolves to the instance's IP.")
@@ -40,17 +41,14 @@ class Instance(BaseModel):
     jupyter_url: Optional[StrictStr] = Field(None, description="URL that opens a jupyter lab notebook on the instance.")
     __properties = ["id", "name", "ip", "status", "ssh_key_names", "file_system_names", "region", "instance_type", "hostname", "jupyter_token", "jupyter_url"]
 
-    @validator('status')
+    @field_validator('status')
+    @classmethod
     def status_validate_enum(cls, value):
         """Validates the enum"""
         if value not in ('active', 'booting', 'unhealthy', 'terminated'):
             raise ValueError("must be one of enum values ('active', 'booting', 'unhealthy', 'terminated')")
         return value
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

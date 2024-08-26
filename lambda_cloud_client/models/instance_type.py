@@ -19,7 +19,7 @@ import json
 
 
 
-from pydantic import BaseModel, Field, StrictInt, StrictStr
+from pydantic import ConfigDict, BaseModel, Field, StrictInt, StrictStr
 from lambda_cloud_client.models.instance_type_specs import InstanceTypeSpecs
 
 class InstanceType(BaseModel):
@@ -31,11 +31,7 @@ class InstanceType(BaseModel):
     price_cents_per_hour: StrictInt = Field(..., description="Price of the instance type, in US cents per hour")
     specs: InstanceTypeSpecs = Field(...)
     __properties = ["name", "description", "price_cents_per_hour", "specs"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""

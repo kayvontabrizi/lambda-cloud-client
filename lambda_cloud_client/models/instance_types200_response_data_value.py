@@ -19,22 +19,19 @@ import json
 
 
 from typing import List
-from pydantic import BaseModel, Field, conlist
+from pydantic import ConfigDict, BaseModel, Field
 from lambda_cloud_client.models.instance_type import InstanceType
 from lambda_cloud_client.models.region import Region
+from typing_extensions import Annotated
 
 class InstanceTypes200ResponseDataValue(BaseModel):
     """
     InstanceTypes200ResponseDataValue
     """
     instance_type: InstanceType = Field(...)
-    regions_with_capacity_available: conlist(Region) = Field(..., description="List of regions, if any, that have this instance type available")
+    regions_with_capacity_available: Annotated[List[Region], Field()] = Field(..., description="List of regions, if any, that have this instance type available")
     __properties = ["instance_type", "regions_with_capacity_available"]
-
-    class Config:
-        """Pydantic configuration"""
-        allow_population_by_field_name = True
-        validate_assignment = True
+    model_config = ConfigDict(populate_by_name=True, validate_assignment=True)
 
     def to_str(self) -> str:
         """Returns the string representation of the model using alias"""
