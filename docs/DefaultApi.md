@@ -27,9 +27,8 @@ Add an SSH key  To use an existing key pair, enter the public key for the `publi
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.add_ssh_key200_response import AddSSHKey200Response
 from lambda_cloud_client.models.add_ssh_key_request import AddSSHKeyRequest
@@ -74,7 +73,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -94,6 +95,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -114,9 +116,8 @@ Delete an SSH key.
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.rest import ApiException
 from pprint import pprint
@@ -157,7 +158,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -177,6 +180,7 @@ void (empty response body)
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | Deletion successful |  -  |
@@ -197,9 +201,8 @@ Retrieves details of a specific instance, including whether or not the instance 
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.get_instance200_response import GetInstance200Response
 from lambda_cloud_client.rest import ApiException
@@ -243,7 +246,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -263,6 +268,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -283,9 +289,8 @@ Returns a detailed list of the instance types offered by Lambda GPU Cloud. The d
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.instance_types200_response import InstanceTypes200Response
 from lambda_cloud_client.rest import ApiException
@@ -328,7 +333,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -345,6 +352,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -364,9 +372,8 @@ Launches one or more instances of a given instance type.
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.launch_instance200_response import LaunchInstance200Response
 from lambda_cloud_client.models.launch_instance_request import LaunchInstanceRequest
@@ -411,7 +418,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -431,6 +440,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -453,9 +463,8 @@ Retrieve the list of file systems
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.list_file_systems200_response import ListFileSystems200Response
 from lambda_cloud_client.rest import ApiException
@@ -498,7 +507,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -515,6 +526,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -534,9 +546,8 @@ Retrieves a detailed list of running instances.
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.list_instances200_response import ListInstances200Response
 from lambda_cloud_client.rest import ApiException
@@ -579,7 +590,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -596,6 +609,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -615,9 +629,8 @@ Retrieve the list of SSH keys
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.list_ssh_keys200_response import ListSSHKeys200Response
 from lambda_cloud_client.rest import ApiException
@@ -660,7 +673,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 This endpoint does not need any parameter.
 
 ### Return type
@@ -677,6 +692,7 @@ This endpoint does not need any parameter.
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -696,9 +712,8 @@ Restarts the given instances.
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.restart_instance200_response import RestartInstance200Response
 from lambda_cloud_client.models.restart_instance_request import RestartInstanceRequest
@@ -743,7 +758,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -763,6 +780,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
@@ -785,9 +803,8 @@ Terminates a given instance.
 
 * Basic Authentication (basicAuth):
 * Bearer (auth-scheme) Authentication (bearerAuth):
+
 ```python
-import time
-import os
 import lambda_cloud_client
 from lambda_cloud_client.models.terminate_instance200_response import TerminateInstance200Response
 from lambda_cloud_client.models.terminate_instance_request import TerminateInstanceRequest
@@ -832,7 +849,9 @@ with lambda_cloud_client.ApiClient(configuration) as api_client:
 ```
 
 
+
 ### Parameters
+
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
@@ -852,6 +871,7 @@ Name | Type | Description  | Notes
  - **Accept**: application/json
 
 ### HTTP response details
+
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |

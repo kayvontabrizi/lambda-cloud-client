@@ -2,6 +2,7 @@
 
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **region_name** | **str** | Short name of a region | 
@@ -21,12 +22,12 @@ json = "{}"
 # create an instance of LaunchInstanceRequest from a JSON string
 launch_instance_request_instance = LaunchInstanceRequest.from_json(json)
 # print the JSON string representation of the object
-print LaunchInstanceRequest.to_json()
+print(LaunchInstanceRequest.to_json())
 
 # convert the object into a dict
 launch_instance_request_dict = launch_instance_request_instance.to_dict()
 # create an instance of LaunchInstanceRequest from a dict
-launch_instance_request_form_dict = launch_instance_request.from_dict(launch_instance_request_dict)
+launch_instance_request_from_dict = LaunchInstanceRequest.from_dict(launch_instance_request_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -3,11 +3,13 @@
 Virtual machine (VM) in Lambda Cloud
 
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **str** | Unique identifier (ID) of an instance | 
 **name** | **str** | User-provided name for the instance | [optional] 
 **ip** | **str** | IPv4 address of the instance | [optional] 
+**private_ip** | **str** | Private IPv4 address of the instance | [optional] 
 **status** | **str** | The current status of the instance | 
 **ssh_key_names** | **List[str]** | Names of the SSH keys allowed to access the instance | 
 **file_system_names** | **List[str]** | Names of the file systems, if any, attached to the instance | 
@@ -27,12 +29,12 @@ json = "{}"
 # create an instance of Instance from a JSON string
 instance_instance = Instance.from_json(json)
 # print the JSON string representation of the object
-print Instance.to_json()
+print(Instance.to_json())
 
 # convert the object into a dict
 instance_dict = instance_instance.to_dict()
 # create an instance of Instance from a dict
-instance_form_dict = instance.from_dict(instance_dict)
+instance_from_dict = Instance.from_dict(instance_dict)
 ```
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
