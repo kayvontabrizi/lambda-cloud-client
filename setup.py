@@ -45,5 +45,4 @@ setup(
     long_description="""\
     API for interacting with the Lambda GPU Cloud
     """,  # noqa: E501
-    package_data={"lambda_cloud_client": ["py.typed"]},
 )
